@@ -36,7 +36,7 @@ def bfs(visited, graph, node):  # Function for BFS
                 visited.append(neighbour)
                 queue.append(neighbour)
 
-# Driver Code
+#Driver Code
 print("Following is the Breadth-First Search")
 bfs(visited, graph, '5')  # Function calling
 

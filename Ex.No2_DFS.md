@@ -12,7 +12,7 @@ To write a python program to implement Depth first Search.
 6. Call the dfs function by passing arguments visited, graph and starting node.
 7. Stop the program.
 ### Program:
-
+```
 graph = {
     '5' : ['3', '7'],
     '3' : ['2', '4'],
@@ -40,7 +40,7 @@ def bfs(visited, graph, node):  # Function for BFS
 print("Following is the Breadth-First Search")
 bfs(visited, graph, '5')  # Function calling
 
-
+```
 
 ### Output:
 ![WhatsApp Image 2025-03-07 at 14 41 30_d9526a8a](https://github.com/user-attachments/assets/8d39a942-fc12-4f3c-969c-880663b63cca)

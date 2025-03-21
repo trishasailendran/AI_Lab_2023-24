@@ -1,6 +1,6 @@
 # Ex.No: 10  Logic Programming –  Simple queries from facts and rules
-### DATE:                                                                            
-### REGISTER NUMBER : 
+### DATE:                21-03-25                                                            
+### REGISTER NUMBER :    212222060280
 ### AIM: 
 To write a prolog program to find the answer of query. 
 ###  Algorithm:
@@ -85,7 +85,8 @@ american(west).
 
 
 ### Output:
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/b2336b65-57e5-4067-9243-c98fed9c4bee)
+
 
 
 ### Result:

@@ -60,10 +60,16 @@ plt.title("Student Performance Confusion Matrix")
 plt.show()
 ```
 ### Output:
+ Accuracy: 0.585
+Classification Report:
+               precision    recall  f1-score   support
 
+           0       0.62      0.65      0.64       112
+           1       0.53      0.50      0.51        88
 
-
-
+    accuracy                           0.58       200
+   macro avg       0.58      0.58      0.58       200
+weighted avg       0.58      0.58      0.58       200
 
 
 ### Result:

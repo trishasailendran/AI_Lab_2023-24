@@ -1,51 +1,76 @@
-# Ex.No: 1  Implementation of Breadth First Search 
-### DATE: 07-03-2025                                                                           
+# Predicting Student Performance with Machine Learning
+
+### DATE:   13-05-2025                                                                         
 ### REGISTER NUMBER : 212222060280
-### AIM: 
-To write a python program to implement Breadth first Search. 
-### Algorithm:
-1. Start the program
-2. Create the graph by using adjacency list representation
-3. Define a function bfs and take the set “visited” is empty and “queue” is empty
-4. Search start with initial node and add the node to visited and queue.
-5. For each neighbor node, check node is not in visited then add node to visited and queue list.
-6.  Creating loop to print the visited node.
-7.   Call the bfs function by passing arguments visited, graph and starting node.
-8.   Stop the program.
+### AIM: The project aims to predict student performance (whether a student is performing above or below average) based on various factors like gender, race/ethnicity, parental level of education, lunch type, and test preparation course completion.
+
+###  Algorithm:
+Random Forest is an ensemble learning method that combines multiple decision trees to make predictions. It's particularly effective for classification tasks like predicting student performance.
+Here's a breakdown of how it works:
+Building the Forest:
+The algorithm creates multiple decision trees, each trained on a different random subset of the data (bootstrapping) and a random subset of features.
+This randomness introduces diversity and reduces overfitting, leading to better generalization.
+Making Predictions:
+When a new data point (e.g., a student's information) needs to be classified, it's passed through each decision tree in the forest.
+Each tree makes its own prediction (e.g., above-average or below-average performance).
+The final prediction is determined by aggregating the predictions of all the trees, typically by majority voting for classification tasks.
+Why Random Forest is Suitable for this Project:
+Handles Complex Datasets: It can handle datasets with many features, like the student performance dataset with demographics, parental background, and test scores.
+Robustness: It's less prone to overfitting compared to individual decision trees, leading to more reliable predictions on unseen data.
+High Accuracy: It often achieves high accuracy due to the ensemble approach and randomness.
+Feature Importance: It can provide insights into which features are most important for prediction, helping to understand the factors influencing student performance.
+
+
 ### Program:
 
-#breadth first Search in python 
 ```
-graph = {
- '5' : ['3','7'],
- '3' : ['2', '4'],
- '7' : ['8'],
- '2' : [],
- '4' : ['8'],
- '8' : []
- }
- visited = [] # List for visited nodes.
- queue = []     #Initialize a queue
- def bfs(visited, graph, node): #function for BFS
- 	 visited.append(node)
-  	queue.append(node)
-  		while queue:          # Creating loop to visit each node
-    			m = queue.pop(0) 
-    			print (m) 
-    			for neighbour in graph[m]:
-      				if neighbour not in visited:
-        					visited.append(neighbour)
-       					 queue.append(neighbour)
+!pip install pandas numpy scikit-learn matplotlib seaborn
 
-# Driver Code
-print("Following is the Breadth-First Search")
-bfs(visited, graph, '5')    # function calling
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+df = pd.read_csv('StudentsPerformance.csv')  # Upload this file from Kaggle
+df.head()
+
+df['average'] = (df['math score'] + df['reading score'] + df['writing score']) / 3
+df['performance'] = df['average'].apply(lambda x: 1 if x > 70 else 0)
+df_encoded = pd.get_dummies(df.drop(['average', 'math score', 'reading score', 'writing score'], axis=1), drop_first=True)
+
+X = df_encoded.drop('performance', axis=1)
+y = df_encoded['performance']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+model = RandomForestClassifier()
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Classification Report:\n", classification_report(y_test, y_pred))
+
+sns.heatmap(confusion_matrix(y_test, y_pred), annot=True, fmt='d', cmap='Greens')
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.title("Student Performance Confusion Matrix")
+plt.show()
 ```
-
 ### Output:
+ Accuracy: 0.585
+Classification Report:
+               precision    recall  f1-score   support
 
-![WhatsApp Image 2025-03-07 at 14 41 30_2e69340f](https://github.com/user-attachments/assets/70916dc8-6178-4ea3-bae5-5d6d642fabb8)
+           0       0.62      0.65      0.64       112
+           1       0.53      0.50      0.51        88
+
+    accuracy                           0.58       200
+   macro avg       0.58      0.58      0.58       200
+weighted avg       0.58      0.58      0.58       200
 
 
-### Result
-Thus the breadth first search order was found sucessfully.
+### Result:
+Thus the system was trained successfully and the prediction was carried out.

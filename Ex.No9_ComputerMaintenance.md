@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/319ffd8a-8675-4eb5-a502-598835102b27)# Ex.No: 9  Logic Programming –  Computer Maintenance Expert System
+# Ex.No: 9  Logic Programming –  Computer Maintenance Expert System
 ### DATE: 22-04-2025                                                                           
 ### REGISTER NUMBER : 212222060280
 ### AIM: 
